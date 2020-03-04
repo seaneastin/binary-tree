@@ -19,11 +19,33 @@ bool BinaryTree::isEmpty() const
 
 void BinaryTree::insert(int a_nValue)
 {
+	TreeNode* treenode = new TreeNode(a_nValue);
 	if (m_pRoot = nullptr)
 	{
-		m_pRoot->setData = a_nValue;
+		m_pRoot = treenode;
 	}
-	while ()
+	TreeNode* current;
+	TreeNode* parent;
+	current = m_pRoot;
+	while (current != nullptr)
+	{
+		if (a_nValue < current->getData())
+		{
+			current = current->getLeft();
+		} 
+		else if (a_nValue > current->getData())
+		{
+			current = current->getRight();
+		}
+		else if (a_nValue = current->getData())
+		{
+			return;
+		} 
+	}
+
+
+
+
 }
 
 void BinaryTree::remove(int a_nValue)
