@@ -65,17 +65,96 @@ void BinaryTree::insert(int a_nValue)
 
 void BinaryTree::remove(int a_nValue)
 {
+	TreeNode* current;
+	TreeNode* parent;
+	bool temp;
+	temp = findNode(a_nValue, &current, &parent);
+
+
+	if (current->hasRight())
+	{
+		TreeNode* minnode;
+		minnode = current->getRight();
+		while (minnode->hasLeft())
+		{
+			parent = minnode;
+			minnode = minnode->getLeft();
+		}
+		current = minnode;
+		if (minnode == parent->getLeft())
+		{
+			parent->setLeft(minnode->getRight());
+		}
+		if (minnode = parent->getRight())
+		{
+			parent->setRight(minnode->getRight());
+		}
+	}
+	else
+	{
+		if (current == parent->getLeft())
+		{
+			parent->setLeft(current->getLeft());
+		}
+		if (current == parent->getRight())
+		{
+			parent->setRight(current->getLeft());
+		}
+		if (current == m_pRoot)
+		{
+			m_pRoot = current->getLeft();
+		}
+	}
+
+
 
 }
 
 TreeNode * BinaryTree::find(int a_nValue)
 {
-	return nullptr;
+	TreeNode* temp = new TreeNode(2);
+	return temp;
 }
 
 void BinaryTree::draw(TreeNode * selected)
 {
 	draw(m_pRoot, 640, 100, 640, selected);
+}
+
+bool BinaryTree::findNode(int a_nSearchValue, TreeNode ** ppOutNode, TreeNode ** ppOutParent)
+{
+
+	TreeNode* current;
+	TreeNode* parent;
+	parent = m_pRoot;
+	current = m_pRoot;
+	while (current != nullptr)
+	{
+		if (a_nSearchValue == current->getData())
+		{
+			*ppOutNode = current;
+			*ppOutParent = parent;
+			return true;
+		}
+		else
+		{
+			if (a_nSearchValue < current->getData())
+			{
+				parent = current;
+				current = current->getLeft();
+
+			}
+			else if (a_nSearchValue > current->getData())
+			{
+				parent = current;
+				current = current->getRight();
+			}
+		}
+	}
+
+	return false;
+
+
 }
 
 void BinaryTree::draw(TreeNode * pNode, int x, int y, int horizontalSpacing, TreeNode * selected)
