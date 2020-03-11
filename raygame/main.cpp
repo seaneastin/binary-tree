@@ -25,10 +25,15 @@ int main()
 	BinaryTree mytree;
 
 	mytree.insert(15);
+	mytree.insert(13);
 	mytree.insert(14);
 	mytree.insert(16);
 	mytree.insert(12);
-	mytree.remove(15);
+	mytree.insert(5);
+	mytree.insert(30);
+	mytree.insert(1);
+	mytree.insert(20);
+	mytree.remove()
 
 	SetTargetFPS(60);
 

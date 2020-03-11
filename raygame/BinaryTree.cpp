@@ -67,44 +67,57 @@ void BinaryTree::remove(int a_nValue)
 {
 	TreeNode* current;
 	TreeNode* parent;
-	bool temp;
-	temp = findNode(a_nValue, &current, &parent);
-
-
-	if (current->hasRight())
+	
+	if (findNode(a_nValue, &current, &parent))
 	{
-		TreeNode* minnode;
-		minnode = current->getRight();
-		while (minnode->hasLeft())
+		if (current->hasRight())
 		{
-			parent = minnode;
-			minnode = minnode->getLeft();
+			TreeNode* minnode;
+			minnode = current->getRight();
+			if (!minnode->getLeft())
+			{
+				parent = current;
+			}
+
+			while (minnode->hasLeft())
+			{
+				parent = minnode;
+				minnode = minnode->getLeft();
+			}
+			current->setData(minnode->getData());
+			if (minnode == parent->getLeft())
+			{
+				parent->setLeft(minnode->getRight());
+				delete minnode;
+			}
+			if (minnode = parent->getRight())
+			{
+				parent->setRight(minnode->getRight());
+				delete minnode;
+			}
 		}
-		current = minnode;
-		if (minnode == parent->getLeft())
+		else
 		{
-			parent->setLeft(minnode->getRight());
-		}
-		if (minnode = parent->getRight())
-		{
-			parent->setRight(minnode->getRight());
+			if (current == parent->getLeft())
+			{
+				parent->setLeft(current->getLeft());
+				delete current;
+			}
+			if (current == parent->getRight())
+			{
+				parent->setRight(current->getLeft());
+				delete current;
+			}
+			if (current == m_pRoot)
+			{
+				m_pRoot = current->getLeft();
+				delete current;
+			}
 		}
 	}
-	else
-	{
-		if (current == parent->getLeft())
-		{
-			parent->setLeft(current->getLeft());
-		}
-		if (current == parent->getRight())
-		{
-			parent->setRight(current->getLeft());
-		}
-		if (current == m_pRoot)
-		{
-			m_pRoot = current->getLeft();
-		}
-	}
+
+
+	
 
 
 
