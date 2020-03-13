@@ -33,6 +33,11 @@ int main()
 	mytree.insert(30);
 	mytree.insert(1);
 	mytree.insert(20);
+	mytree.remove(14);
+	mytree.remove(15);
+	mytree.remove(1);
+	mytree.remove(12);
+
 
 	SetTargetFPS(60);
 
