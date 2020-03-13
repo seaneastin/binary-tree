@@ -58,6 +58,16 @@ void BinaryTree::draw(TreeNode * selected)
 	draw(m_pRoot, 640, 680, 640, selected);
 }
 
+bool BinaryTree::findNode(int a_nSearchValue, TreeNode ** ppOutNode, TreeNode ** ppOutParent)
+{
+	TreeNode* current;
+	current = m_pRoot;
+	While(current != nullptr)
+	{
+
+	}
+}
+
 void BinaryTree::draw(TreeNode * pNode, int x, int y, int horizontalSpacing, TreeNode * selected)
 {
 	//cut the horizontal spacing in half
